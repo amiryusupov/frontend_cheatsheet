@@ -1,8 +1,8 @@
-# 📚Frontend Cheat Sheet
-The best repository to remind frontend
+# 📚 Frontend Cheat Sheet
+This repository is a cheat sheet to Front-end for daily use. It contains a lot of snippets from my own use / official documentation and I'll improve it soon!
 
 ## Table of contents
-1. [React](#react)
+1. **[React](#1---react)**
 <!-- 2. [Redux](#redux)
 3. [Axios](#axios) -->
 
