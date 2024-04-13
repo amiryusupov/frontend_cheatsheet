@@ -51,14 +51,15 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 ```
-```bash
-# Create a root using ReactDOM.createRoot and attach it to the DOM element with the ID "root".
+
+```javascript
+// Create a root using ReactDOM.createRoot and attach it to the DOM element with the ID "root".
 const root = ReactDOM.createRoot(
   document.getElementById('root')
 );
 ```
-```bash
-# Render the App component inside the root element using root.render()
+```javascript
+// Render the App component inside the root element using root.render()
 render(
   <React.StrictMode>
     <App />
@@ -66,3 +67,25 @@ render(
 )
 ```
 - **Strict Mode**: React offers `<StrictMode>` component that helps highlight potential problems in you application. You can wrap your app within `<StrictMode>` during development.
+
+### JSX
+```javascript
+// JSX produce React Element
+const element = <h1>My JSX Element</h1>;
+```
+```javascript
+// Use curly braces to embed some Javascript
+const element = <div>{getContent()}</div>;
+```
+```javascript
+// Use camelCase for attribute name
+const element = <div className="example"></div>;
+```
+```javascript
+// Use curly braces to embed some Javascript
+const element = <img src={image.url}></img>;
+```
+```javascript
+// Self close if tag is empty
+const item = <div />;
+```
