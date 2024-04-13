@@ -31,7 +31,7 @@ yarn create vite my-react-app --template react
 ```
 
 ```bash
-# npm
+# how to run (npm)
 npm start
 
 # yarn
@@ -43,3 +43,26 @@ npm run dev
 # yarn (Vite)
 yarn dev
 ```
+### React Use
+**Default main.jsx**
+```bash
+# import React and ReactDOM
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+```
+```bash
+# Create a root using ReactDOM.createRoot and attach it to the DOM element with the ID "root".
+const root = ReactDOM.createRoot(
+  document.getElementById('root')
+);
+```
+```bash
+# Render the App component inside the root element using root.render()
+render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+```
+- **Strict Mode**: React offers `<StrictMode>` component that helps highlight potential problems in you application. You can wrap your app within `<StrictMode>` during development.
