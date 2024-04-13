@@ -45,8 +45,8 @@ yarn dev
 ```
 ### React Use
 **Default main.jsx**
-```bash
-# import React and ReactDOM
+```javascript
+// import React ReactDOM and App component
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
@@ -69,6 +69,7 @@ render(
 - **Strict Mode**: React offers `<StrictMode>` component that helps highlight potential problems in you application. You can wrap your app within `<StrictMode>` during development.
 
 ### JSX
+**JSX** is a syntax extension for JavaScript that allows you to write HTML-like code directly within your React components.
 ```javascript
 // JSX produce React Element
 const element = <h1>My JSX Element</h1>;
@@ -89,3 +90,34 @@ const element = <img src={image.url}></img>;
 // Self close if tag is empty
 const item = <div />;
 ```
+### Components
+1. **Functional Components:**
+- Defined as JavaScript functions.
+- Receive props (properties) as input and return JSX describing the UI.
+
+```javascript
+// Stateless Functional Component
+function Heading(props) {
+  return <h1>{props.title}</h1>;
+}
+```
+```javascript
+// Stateless Functional Component (with arrow function)
+const Heading = (props) => {
+  return <h1>{props.title}</h1>;
+}
+```
+
+2. **Class Components**
+- Defined as ES6 classes that extend React.Component.
+- Have a render() method that returns JSX.
+```javascript
+class Heading extends React.Component {
+  render() {
+    return Hello, {this.props.name};
+  }
+}
+```
+
+
+> **Note:** Always start component names with capital, like this: `<Heading />`
