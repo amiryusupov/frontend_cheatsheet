@@ -109,6 +109,12 @@ const Heading = (props) => {
   return <h1>{props.title}</h1>;
 }
 ```
+```javascript
+// Instead of props you can write curly brackets
+const Heading({title}) {
+  return <h1>{title}</h1>
+}
+```
 
 2. **Class Components**
 - Defined as ES6 classes that extend React.Component.
@@ -193,3 +199,81 @@ setPerson({ name: 'Bob' });
 ```
 > **Note:** Don't do these☝️. Don't use array methods and don't forget to spread elements.
 
+---
+
+### Event Handling
+**Event handling** allows users to interact  with your components, triggering actions and updates in response to events like clicks, form submissions and keyboard input.
+
+#### 1. Event Handlers as props:
+- Event handler prop names typically start with `on` followed by the event name (e.g., `onCLick`, `onSubmit`, `onChange`).
+```javascript
+function Button({ onClick }) {
+  return Click me;
+}
+```
+
+#### 2. Handling Events in Functional Components
+
+```javascript
+function MyComponent() {
+  const handleClick = (event) => {
+    console.log('Button clicked!', event);
+    // ... perform actions based on the event
+  };
+    return <button onClick={handleClick}>Click me<button>;
+}
+```
+- The `event` argument you see in functional component event handlers in React.js is a special object that provides information about the user interaction that triggered the event. It returns several things like type of event, target element, mouse poisition, keyboard information, form data and etc. when clicking the button. For example: `event.target` or `event.type`.
+- We can also change the name `event` to another. This name `event` only makes it easier to understand the code.
+- Don't add `()` parentheses at the end of the function name.  If you add parentheses after the function name (e.g., `onClick={handleClick()}`), you're actually calling the `handleClick` function right there in the JSX. This would result in the function being executed immediately during rendering, and not when the button is clicked.
+
+#### 3. Common events
+
+##### Click: `onClick` 
+`onClick` used to detect when a user clicks on a specific HTML element.
+```html
+<button onClick={handleClick}>Click me</button>
+```
+
+##### Submit: `onSubmit`
+`onSubmit` is specifically used for handling form submissions. It's triggered when a user submits a form, typically by clicking a submit button or pressing the Enter key within the form.
+```html
+<form onSubmit={handleSubmit}>
+  {/* Form fields and elements here */}
+  <button type="submit">Submit</button>
+</form>
+```
+
+##### Change: `onChange` (for input elements)
+The `onChange` event handler is used to detect changes in the value of form elements like text inputs, textareas, and select elements. It allows you to capture user input in real-time and update your component's state accordingly.
+```html
+<input type="text" value={name} onChange={handleChange} />
+```
+
+##### Key Press: `onKeyDown, onKeyUp`
+The `onKeyDown` and `onKeyUp` event handlers are used to detect key presses and releases within specific elements, typically input fields like text boxes or textareas. They provide finer control compared to onChange, which focuses on changes in the element's value.
+
+**1. `onKeyDown` event:**
+  - Triggers when a user **presses** a key down on the keyboard.
+  - Useful for capturing specific key presses (e.g., Enter, Escape) or performing actions before the character is displayed.
+
+**2. `onKeyUp` event:** 
+  - Triggers when a user **releases** a key after pressing it down.
+  - Useful for capturing the actual character typed or performing actions after the value has been updated.
+
+  [Example of Key events](./KeyEvents.jsx)
+
+##### Mouse Events: `onMouseEnter`, `onMouseLeave`,`onMouseMove`, etc.
+The `onMouseEnter` event triggers when the mouse cursor enters the boundaries of a specific element.
+  - `event.clientX`: X-coordinate of the mouse cursor relative to the viewport.
+  - `event.clientY`: Y-coordinate of the mouse cursor relative to the viewport.
+
+The `onMouseLeave` event triggers when the mouse cursor leaves the boundaries of a specific element.
+  - Same properties as `onMouseEnter` but when cursor leaves.
+
+[Example of Mouse events](./MouseEvents.jsx)
+
+The `onMouseMove` event triggers continuously as the mouse cursor moves over the element. Mostly it used for dynamic interactions like dragging elements, drawing effects, or for interactive games. 
+
+##### Here is the real example with explanation with each of common events:
+[Go to the Example](./EventHandling.jsx)
