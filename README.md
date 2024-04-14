@@ -14,7 +14,7 @@ React.js is a JavaScript library used for building user interfaces (UIs) for web
 - **Declarative Syntax**: With React, you describe how your UI should look at any given point in time, and React takes care of updating the actual UI to match this description. It's like telling React what you want, and React figures out how to make it happen.
 - **Virtual DOM**: React uses a virtual representation of the actual DOM (the structure of your web page) to keep track of changes. When there's a change in your data or UI, React first updates this virtual DOM, then efficiently updates only the necessary parts of the actual DOM. It's like having a blueprint of your web page that React can quickly modify without needing to rebuild everything from scratch.
 - **JSX**: JSX is a syntax extension that allows you to write HTML-like code directly in your JavaScript files. It's like mixing HTML with JavaScript, which makes it easier to create and visualize UI components in React.
-
+---
 ### Create React App
 ```bash
 # npm
@@ -43,6 +43,7 @@ npm run dev
 # yarn (Vite)
 yarn dev
 ```
+---
 ### React Use
 **Default main.jsx**
 ```javascript
@@ -67,7 +68,7 @@ render(
 )
 ```
 - **Strict Mode**: React offers `<StrictMode>` component that helps highlight potential problems in you application. You can wrap your app within `<StrictMode>` during development.
-
+---
 ### JSX
 **JSX** is a syntax extension for JavaScript that allows you to write HTML-like code directly within your React components.
 ```javascript
@@ -90,6 +91,7 @@ const element = <img src={image.url}></img>;
 // Self close if tag is empty
 const item = <div />;
 ```
+---
 ### Components
 1. **Functional Components:**
 - Defined as JavaScript functions.
@@ -120,7 +122,7 @@ class Heading extends React.Component {
 ```
 
 > **Note:** Always start component names with capital, like this: `<Heading />`
-
+---
 ### State management
 **State management** is a crucial aspect of building dynamic and interactive React applications. It involves controlling and updating the data that drives your UI, ensuring changes are reflected efficiently and consistently.
 #### 1. useState Hook: The Basics
@@ -129,7 +131,7 @@ class Heading extends React.Component {
   - Current State Value: The first element holds the current state value.
   - State Update Function: The second element is a function used to update the state.
 
-**1. useState Syntax and Usage:**
+##### 1. useState Syntax and Usage:
 - Import `useState` from the 'react' library:
 ```javascript
 import React, { useState } from 'react';
@@ -144,7 +146,7 @@ const [stateVariable, setStateFunction] = useState(initialValue);
   - **stateVariable**: This variable holds the current state value.
   - **setStateFunction**: This function is used to update the state.
 
-**2. Updating state**
+##### 2. Updating state
 - To update the state, call `setStateFunction` with the new value:
 ``` javascript
 setStateFunction(newValue);
@@ -154,7 +156,7 @@ setStateFunction(newValue);
 ```javascript
 setStateFunction((prevState) => prevState + 1);
 ```
-**3. Working with Objects and Arrays:**
+##### 3. Working with Objects and Arrays:
 - Always create a new object or array when updating state to ensure React detects the change and re-renders. Avoid directly modifying the existing state object/array.
 - Use the **spread operator** `...` to create a new object/array with the updated values:
 ```javascript
