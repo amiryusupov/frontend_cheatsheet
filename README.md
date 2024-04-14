@@ -119,5 +119,75 @@ class Heading extends React.Component {
 }
 ```
 
-
 > **Note:** Always start component names with capital, like this: `<Heading />`
+
+### State management
+**State management** is a crucial aspect of building dynamic and interactive React applications. It involves controlling and updating the data that drives your UI, ensuring changes are reflected efficiently and consistently.
+#### 1. useState Hook: The Basics
+- **Functional State**: `useState` is a built-in Hook that allows you to add state to functional components.
+- **State Initialization**: You call useState with an initial value, and it returns an array containing two elements:
+  - Current State Value: The first element holds the current state value.
+  - State Update Function: The second element is a function used to update the state.
+
+**1. useState Syntax and Usage:**
+- Import `useState` from the 'react' library:
+```javascript
+import React, { useState } from 'react';
+```
+
+- Within your functional component, call `useState` with the initial state value:
+``` javascript
+const [stateVariable, setStateFunction] = useState(initialValue);
+```
+
+- The `useState` call returns an array with two elements, which you destructure into two variables:
+  - **stateVariable**: This variable holds the current state value.
+  - **setStateFunction**: This function is used to update the state.
+
+**2. Updating state**
+- To update the state, call `setStateFunction` with the new value:
+``` javascript
+setStateFunction(newValue);
+```
+
+- When the new state depends on the previous state, you can pass a function to `setStateFunction`:
+```javascript
+setStateFunction((prevState) => prevState + 1);
+```
+**3. Working with Objects and Arrays:**
+- Always create a new object or array when updating state to ensure React detects the change and re-renders. Avoid directly modifying the existing state object/array.
+- Use the **spread operator** `...` to create a new object/array with the updated values:
+```javascript
+const [person, setPerson] = useState({ name: 'Alice', age: 30 });
+
+// Correct way to update age (object)
+setPerson(prevPerson => ({ ...prevPerson, age: 31 }));
+```
+**Array:**
+
+```javascript
+const [items, setItems] = useState(['apple', 'banana']);
+
+// Correct way to add a new item (array)
+setItems(prevItems => [...prevItems, 'orange']);
+```
+**Don'ts:**
+
+- Avoid directly mutating the state object/array using methods like `push`, `pop`, or property assignment. This can lead to unexpected behavior and prevent React from detecting changes.
+
+**Example(don't):**
+```javascript
+// Incorrect way to update age
+person.age = 31;
+setPerson(person); // This won't trigger a re-render
+```
+
+- When updating a specific property or element, remember to spread the existing properties/elements to avoid losing data.
+
+**Example(don't):**
+```javascript
+// Incorrect way to update name, losing the age property
+setPerson({ name: 'Bob' });
+```
+> **Note:** Don't do these☝️. Don't use array methods and don't forget to spread elements.
+
