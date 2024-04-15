@@ -67,7 +67,7 @@ render(
   </React.StrictMode>,
 )
 ```
-- **Strict Mode**: React offers `<StrictMode>` component that helps highlight potential problems in you application. You can wrap your app within `<StrictMode>` during development.
+- **Strict Mode**: React offers `<StrictMode>` component that helps highlight potential problems in your application. You can wrap your app within `<StrictMode>` during development.
 ---
 ### JSX
 **JSX** is a syntax extension for JavaScript that allows you to write HTML-like code directly within your React components.
@@ -144,7 +144,7 @@ import React, { useState } from 'react';
 ```
 
 - Within your functional component, call `useState` with the initial state value:
-``` javascript
+```javascript
 const [stateVariable, setStateFunction] = useState(initialValue);
 ```
 
@@ -154,7 +154,7 @@ const [stateVariable, setStateFunction] = useState(initialValue);
 
 ##### 2. Updating state
 - To update the state, call `setStateFunction` with the new value:
-``` javascript
+```javascript
 setStateFunction(newValue);
 ```
 
@@ -205,10 +205,10 @@ setPerson({ name: 'Bob' });
 **Event handling** allows users to interact  with your components, triggering actions and updates in response to events like clicks, form submissions and keyboard input.
 
 #### 1. Event Handlers as props:
-- Event handler prop names typically start with `on` followed by the event name (e.g., `onCLick`, `onSubmit`, `onChange`).
+- Event handler prop names typically start with `on` followed by the event name (e.g., `onClick`, `onSubmit`, `onChange`).
 ```javascript
 function Button({ onClick }) {
-  return Click me;
+  return 'Click me';
 }
 ```
 
@@ -239,7 +239,7 @@ function MyComponent() {
 `onSubmit` is specifically used for handling form submissions. It's triggered when a user submits a form, typically by clicking a submit button or pressing the Enter key within the form.
 ```html
 <form onSubmit={handleSubmit}>
-  {/* Form fields and elements here */}
+   <!-- Form fields and elements here -->
   <button type="submit">Submit</button>
 </form>
 ```
@@ -271,9 +271,25 @@ The `onMouseEnter` event triggers when the mouse cursor enters the boundaries of
 The `onMouseLeave` event triggers when the mouse cursor leaves the boundaries of a specific element.
   - Same properties as `onMouseEnter` but when cursor leaves.
 
+The `onMouseMove` event triggers continuously as the mouse cursor moves over the element. Mostly it used for dynamic interactions like dragging elements, drawing effects, or for interactive games.
+
 [Example of Mouse events](./MouseEvents.jsx)
 
-The `onMouseMove` event triggers continuously as the mouse cursor moves over the element. Mostly it used for dynamic interactions like dragging elements, drawing effects, or for interactive games. 
+**preventDefault():** The main point of `preventDefault()` is to give your JavaScript code a chance to **handle** the event **before the browser's default behavior** takes place. In the case of forms, the default behavior is to submit the form data to a server and potentially reload the page. By calling `preventDefault()`, you essentially tell the browser to pause and wait for your JavaScript code to handle the form submission instead. This gives you the opportunity to validate form data, for example.
 
-##### Here is the real example with explanation with each of common events:
+Example:
+```javascript
+function handleSubmit(event) {
+  event.preventDefault();
+
+  // Validate form data here
+  if (/* validation fails */) {
+    alert('Please enter valid data!');
+  } else {
+    // Submit the form or process the data here
+  }
+}
+```
+
+#### Here is the real example with explanation with each of common events:
 [Go to the Example](./EventHandling.jsx)
