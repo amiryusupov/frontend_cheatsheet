@@ -340,3 +340,27 @@ function Modal(props) {
   );
 }
 ```
+
+---
+
+### Portal
+`createPortal` from React DOM provides a way to render content outside the normal component hierarchy, often referred to as creating a "portal".
+
+```javascript
+function MyComponent() {
+  return (
+    <div>
+      {/* Regular content */}
+      {
+        createPortal(
+        <div>This content is rendered in a portal!</div>,
+        document.body
+        )
+      }
+    </div>
+  );
+}
+```
+
+In a nutshell, `createPortal` lets you break free from the normal component hierarchy. It allows you to render content (like modals, tooltips, or third-party widgets) in a specific DOM element, even if that element isn't directly nested within your component tree. This gives you more control over positioning and isolation of certain UI elements in your React application.
+
