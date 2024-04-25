@@ -293,3 +293,50 @@ function handleSubmit(event) {
 
 #### Here is the real example with explanation with each of common events:
 [Go to the Example](./EventHandling.jsx)
+
+---
+
+### Conditional Rendering
+**Conditional Rendering** allows you to control which JSX elements are rendered on the screen and when, creating dynamic and interactive user interfaces.
+```javascript
+// Using if operator with props
+function Message(props) {
+  const isHome = props.isHome;
+  if (isHome) {
+    return <HomeHeading />;
+  }
+  return <PageHeading />;
+}
+```
+This concise syntax is often used for simpler conditions:
+```javascript
+// Using the Logical AND Operator (&&):
+function LoginButton(props) {
+  return !props.isLoggedIn && <button onClick={props.onClick}>Log In</button>;
+}
+```
+This compact operator is useful for short conditional expressions:
+```javascript
+// Using the Ternary Operator ( ? : )
+function VoteCount(props) {
+  return (
+    <p>
+      Votes: {props.count} {props.count > 1 ? 'votes' : 'vote'}
+    </p>
+  );
+}
+```
+```javascript
+// Also we can use for the Modals
+function Modal(props) {
+  if (!props.isShow) {
+    return null;
+  }
+
+  return (
+    <div>
+      Modal
+    </div>
+  );
+}
+```
