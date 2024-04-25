@@ -343,6 +343,70 @@ function Modal(props) {
 
 ---
 
+### Component Communication
+
+#### 1. Props Drilling:
+
+- This is the most basic approach and involves passing data down the component tree from parent to child components.
+  - Parents define props (properties) in the opening tag of a child component.
+  - Children access these props using the props object within their component.
+
+```javaScript
+// ParentComponent.jsx
+function ParentComponent() {
+  const name = "Alice";
+  return (
+    <ChildComponent name={name} />
+  );
+}
+
+// ChildComponent.jsx
+function ChildComponent(props) {
+  return (
+    <p>Hello, {props.name}!</p>
+  );
+}
+```
+
+#### 2. Lifting State Up:
+
+- When a child component needs to modify data that's also used by a parent component, we can "lift" the state up to the common parent.
+  - The child component raises an event (usually through a callback function passed as a prop) to inform the parent about the state change.
+  - The parent component updates its state and passes the updated data down to its children through props.
+
+```javaScript
+// ParentComponent.jsx
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <ChildComponent count={count} onIncrement={handleIncrement} />
+    </div>
+  );
+}
+
+// ChildComponent.jsx
+function ChildComponent(props) {
+  return (
+    <div>
+      <p>Count: {props.count}</p>
+      <button onClick={props.onIncrement}>Increment</button>
+    </div>
+  );
+}
+```
+
+#### 3. React Context Api
+
+I have explained about it below
+
+---
+
 ### Portal
 `createPortal` from React DOM provides a way to render content outside the normal component hierarchy, often referred to as creating a "portal".
 
