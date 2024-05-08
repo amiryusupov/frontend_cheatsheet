@@ -129,8 +129,8 @@ class Heading extends React.Component {
 
 > **Note:** Always start component names with capital, like this: `<Heading />`
 ---
-### State management
-**State management** is a crucial aspect of building dynamic and interactive React applications. It involves controlling and updating the data that drives your UI, ensuring changes are reflected efficiently and consistently.
+### Hooks
+Hooks are special functions that allow you to "hook into" React state and other features from functional components. Hooks provide a more concise and flexible way to achieve the same functionality without needing classes.
 #### 1. useState Hook: The Basics
 - **Functional State**: `useState` is a built-in Hook that allows you to add state to functional components.
 - **State Initialization**: You call useState with an initial value, and it returns an array containing two elements:
@@ -200,7 +200,65 @@ setPerson({ name: 'Bob' });
 > **Note:** Don't do these☝️. Don't use array methods and don't forget to spread elements.
 
 ---
+#### 2. useEffect Hook:
+The `useEffect` hook allows you to perform actions after a component renders. These actions are typically side effects, which can include:
+- Fetching data from APIs
+- Setting up subscriptions (e.g., to listen for data changes)
+- Running timers or intervals
 
+**How it Works:**
+
+- `useEffect` accepts two arguments:
+  - **Effect callback:** This is a function that contains the side effect logic you want to run.
+  - **Dependency array (optional):** This is an optional array of values. The effect callback will only run again if one of the values in the dependency array changes.
+
+The **useEffect** hook uses a function as its first argument, and this function can optionally return another function. Let's break it down:
+
+**1. Effect Callback:** The first argument you pass to useEffect is a function that contains the logic for your side effect. This function typically performs actions like fetching data, setting up subscriptions, or running timers.
+
+**2. Optional Cleanup Function:**  The effect callback can optionally return a function. This function serves as a cleanup mechanism and is executed when:
+
+- The component unmounts (is removed from the DOM).
+- The effect runs again due to changes in the dependency array (if provided).
+
+**The dependency array:**
+The dependency array is crucial for optimizing performance. If you omit the dependency array, the effect runs after every render, which can be inefficient.
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function MyComponent() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('https://api.example.com/data');
+      const jsonData = await response.json();
+      setData(jsonData);
+    };
+
+    fetchData();
+
+    // Cleanup function (optional)
+    return () => {
+      // unsubscribe from any subscriptions here
+    };
+  }, []); // Empty dependency array: fetch data only on mount
+
+  return (
+    <div>
+      {data ? (
+        <p>Fetched Data: {data.message}</p>
+      ) : (
+        <p>Loading data...</p>
+      )}
+    </div>
+  );
+}
+
+```
+
+---
 ### Event Handling
 **Event handling** allows users to interact  with your components, triggering actions and updates in response to events like clicks, form submissions and keyboard input.
 
