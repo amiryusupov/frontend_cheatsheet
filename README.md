@@ -461,7 +461,7 @@ function ChildComponent(props) {
 
 #### 3. React Context Api
 
-I have explained about it below
+I have explained about it above
 
 ---
 
