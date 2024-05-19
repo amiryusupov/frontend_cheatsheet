@@ -259,6 +259,61 @@ function MyComponent() {
 ```
 
 ---
+
+#### 3. React Context:
+
+The `useContext` hook in React is used to access the value of a context directly in a functional component. This can be particularly useful for managing global state or themes across a React application without passing props down through multiple levels of components.
+
+##### Steps to use `useContext`
+
+1. **Create a Context**
+First, you need to create a context using `React.createContext`. This will create a Context object.
+
+```javascript
+import React from 'react';
+
+const ThemeContext = React.createContext('light');
+```
+
+2. **Provide a Context Value**
+Use the **Provider** component of the Context object to pass down the value. This should be done at a higher level in your component tree.
+
+```javascript
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+```
+
+3. **Consume the Context Value**
+Use the `useContext` hook to access the context value in a functional component.
+
+```javascript
+import React, { useContext } from 'react';
+
+function Toolbar() {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return <button className={theme}>I am styled by theme context!</button>;
+}
+```
+
+Purposes of using `useContext`
+- **Avoid Prop Drilling:** `useContext` helps to avoid the cumbersome (large or heavy and therefore difficult to carry or use) task of passing props down through many levels of components.
+- **Centralized State Management:** By using context, you can centralize state management for certain values (like theme, user info, etc.) making the code cleaner and more maintainable.
+- **Reusability:** Context values can be reused across different components, promoting code reuse and reducing redundancy.
+---
+
 ### Event Handling
 **Event handling** allows users to interact  with your components, triggering actions and updates in response to events like clicks, form submissions and keyboard input.
 
