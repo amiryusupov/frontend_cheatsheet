@@ -312,6 +312,76 @@ Purposes of using `useContext`
 - **Avoid Prop Drilling:** `useContext` helps to avoid the cumbersome (large or heavy and therefore difficult to carry or use) task of passing props down through many levels of components.
 - **Centralized State Management:** By using context, you can centralize state management for certain values (like theme, user info, etc.) making the code cleaner and more maintainable.
 - **Reusability:** Context values can be reused across different components, promoting code reuse and reducing redundancy.
+
+---
+
+#### 4. useReducer Hook
+
+The `useReducer` hook in React is a powerful way to manage complex state logic in functional components. It is similar to `useState` but is more suited for state logic that involves multiple sub-values or complex state transitions. `useReducer` is particularly useful when the next state depends on the previous state, or when multiple actions can affect the state.
+
+##### How `useReducer` works?
+
+The `useReducer` hook accepts 2 arguments:
+
+1. **reducer**: A function that specifies how the state transitions happen. It takes the current state and an action, and returns a new state.
+
+2. **initialState**: The initial state value.
+
+`useReducer` returns an array with 2 elements:
+
+1. The current state.
+2. A dispatch function to trigger state transitions.
+
+##### Basic example
+```javascript
+import React, { useReducer } from 'react';
+
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+##### Detailed explanation
+
+1. **Initial State**:
+- `const initialState = { count: 0 };`: This defines the initial state with a single property count.
+
+2. **Reducer Function**:
+- The `reducer` function defines how the state should change in response to different actions.
+- It takes 2 arguments: the current state and an action object.
+- Based on the `action.type`, it returns a new state.
+
+3. **Using** `useReducer`:
+- `const [state, dispatch] = useReducer(reducer, initialState);`: This line initializes the state and provides the dispatch function to trigger state updates.
+
+4. **Dispatching Actions**:
+- `dispatch({ type: 'increment' })`: This triggers the increment case in the reducer function, updating the state.
+
+`useReducer` can also be combined with Context Api to manage global state in a more scalable way.  [Here is a simple example](./CombinationReducerContext.jsx)
+
 ---
 
 ### Event Handling
