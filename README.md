@@ -390,6 +390,74 @@ export default Counter;
 
 `useReducer` can also be combined with Context Api to manage global state in a more scalable way.  [Here is a simple example](./CombinationReducerContext.jsx)
 
+
+#### 5. useCallback Hook
+The `useCallback` hook in React is used to memoize callback functions, which can be beneficial for optimizing performance in your application. By using `useCallback`, you can prevent unnecessary re-creations of functions and reduce the number of times child components re-render when they receive these functions as props. **In simple terms, it means that the callback function is cached and does not get redefined on every render**
+
+##### How `useCallback` Works?
+
+`useCallback` returns a memoized version of the callback function that only changes if one of the dependencies has changed. It accepts two arguments:
+
+1. **callback:** The function that you want to memoize.
+2. **dependencies:** An array of dependencies that determine when the callback function should be re-created.
+
+##### Basic Example
+```javascript
+import React, { useState, useCallback } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const increment = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+##### Detailed explanation:
+
+1. **State initialization:**
+    ```js
+    const [count, setCount] = useState(0);
+    ```
+    This initializes a state variable count with an initial value of 0 and a state setter function `setCount`.
+
+2. Memoizing the Callback:
+    ```js
+    const increment = useCallback(() => {
+      setCount(count + 1);
+    }, [count]);
+    ```
+
+    The `increment` function is memoized using `useCallback`. It will only be re-created if the `count` dependency changes. This ensures that the `increment` function is stable and doesn't change on every render.
+
+3. Using the Callback:
+    ```html
+    <button onClick={increment}>Increment</button>
+    ```
+    
+    The memoized `increment` function is used as the click handler for the button.
+
+[Here is the advanced example](./CallbackExample.md)
+
+##### Benefits of Using `useCallback`
+- **Optimized Performance**: Prevents unnecessary re-creations of functions, which can reduce the number of re-renders in child components that receive these functions as props.
+- **Stable References**: Provides stable function references, which can be useful when dealing with dependencies in `useEffect` or when passing functions to optimized child components that rely on reference equality to avoid unnecessary renders.
+
+
+##### When to use `useCallback`
+- **Passing Functions to Optimized Components**: When you pass a function to a child component wrapped with `React.memo` or other similar optimization techniques.
+- **Dependencies in `useEffect`**: When you want to ensure that a function reference is stable to prevent unnecessary re-executions of effects.
+
 ---
 
 ### Event Handling
