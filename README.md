@@ -3,6 +3,14 @@ This repository is a cheat sheet to Front-end for daily use. It contains a lot o
 
 ## Table of contents
 1. **[React](#1---react)**
+    - **[React Use](#react-use)**
+    - **[JSX](#jsx)**
+    - **[Components](#components)**
+    - **[Hooks](#hooks)**
+    - **[Event Handling](#event-handling)**
+    - **[Conditional Rendering](#conditional-rendering)**
+    - **[Component Communication](#component-communication)**
+    - **[Portal](#portal)**
 <!-- 2. [Redux](#redux)
 3. [Axios](#axios) -->
 
