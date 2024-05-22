@@ -390,6 +390,7 @@ export default Counter;
 
 `useReducer` can also be combined with Context Api to manage global state in a more scalable way.  [Here is a simple example](./CombinationReducerContext.jsx)
 
+---
 
 #### 5. useCallback Hook
 The `useCallback` hook in React is used to memoize callback functions, which can be beneficial for optimizing performance in your application. By using `useCallback`, you can prevent unnecessary re-creations of functions and reduce the number of times child components re-render when they receive these functions as props. **In simple terms, it means that the callback function is cached and does not get redefined on every render**
@@ -457,6 +458,102 @@ export default Counter;
 ##### When to use `useCallback`
 - **Passing Functions to Optimized Components**: When you pass a function to a child component wrapped with `React.memo` or other similar optimization techniques.
 - **Dependencies in `useEffect`**: When you want to ensure that a function reference is stable to prevent unnecessary re-executions of effects.
+
+---
+
+#### useMemo Hook
+
+The `useMemo` hook in React is used to memoize expensive calculations and return a memoized value. It is beneficial for optimizing performance in React applications by avoiding unnecessary recalculations of values. By using `useMemo`, you can ensure that a function only recomputes the value when one of its dependencies has changed.
+
+How `useMemo` works?
+
+The `useMemo` hook accepts 2 arguments:
+
+1. **create**: A function that computes a value.
+
+2. **dependencies**: An array of dependencies that determine when memoized value should be recomputed.
+
+`useMemo` returns a memoized value that only changes if one of the dependencies has changed.
+
+##### Basic Example:
+
+```javascript
+import React, { useState, useMemo } from 'react';
+
+function ExpensiveComputationComponent({ number }) {
+  const expensiveComputation = (num) => {
+    console.log('Computing...');
+    // Simulate an expensive computation
+    return num * 2;
+  };
+
+  const computedValue = useMemo(() => expensiveComputation(number), [number]);
+
+  return (
+    <div>
+      <p>Computed Value: {computedValue}</p>
+    </div>
+  );
+}
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <ExpensiveComputationComponent number={count} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+##### Detailed Explanation
+
+1. **State Initialization:**
+
+```javascript
+const [count, setCount] = useState(0);
+```
+
+This initializes a state variable `count` with an initial value of 0 and a state setter function `setCount`.
+
+2. **Expensive Computation:**
+
+```javascript
+const expensiveComputation = (num) => {
+  console.log('Computing...');
+  return num * 2;
+};
+```
+
+This function simulates an expensive computation by printing a log message and returning a value based on the input `num`.
+
+3. **Memoizing the Computed value:**
+
+```javascript
+const computedValue = useMemo(() => expensiveComputation(number), [number]);
+```
+
+The `computedValue` is memoized using `useMemo`. It will only be recomputed when the `number` dependency changes. This ensures that the expensive computation only runs when necessary.
+
+4. **Using the Memoized value:**
+
+```html
+<p>Computed Value: {computedValue}</p>
+```
+
+The memoized value is displayed in the component.
+
+[Here is the advanced example](./MemoExample.md)
+
+##### When to use `useMemo`
+
+- **Expensive calculations**: When you have computations that are performance-intensive and don't need to be recalculated on every render.
+
+- **Stable References**: When you need to ensure that a value remains stable across renders for dependencies in other hooks or when passing props to child components.
 
 ---
 
