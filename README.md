@@ -557,6 +557,23 @@ The memoized value is displayed in the component.
 
 ---
 
+#### Here is the comparison of complex (`useEffect`, `useReducer`, `useCallback`, and `useMemo`) hooks in a table format:
+
+| **Hook**       | **Purpose**                                                                                                 | **Arguments**                                                                                                 | **Returns**                                         | **Common Use Cases**                                                                                                     |
+|----------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| `useEffect`    | Perform side effects in function components, such as data fetching, subscriptions, or manually changing the DOM | 1. Effect function<br>2. Optional dependencies array                                                             | None                                               | - Data fetching<br> - Subscriptions<br> - Changing the DOM manually<br> - Running code after render                      |
+| `useReducer`   | Manage complex state logic in function components, especially when state depends on previous state          | 1. Reducer function (state, action) => newState<br>2. Initial state                                          | [state, dispatch]                                   | - Complex state logic<br> - State transitions<br> - When state updates are based on previous state values                |
+| `useCallback`  | Memoize callback functions to prevent unnecessary re-creations                                              | 1. Callback function<br>2. Dependencies array                                                                | Memoized callback function                          | - Passing stable functions as props<br> - Dependencies in `useEffect` or other hooks<br> - Preventing unnecessary renders |
+| `useMemo`      | Memoize values to prevent expensive calculations from running on every render                               | 1. Create function<br>2. Dependencies array                                                                 | Memoized value                                      | - Expensive computations<br> - Returning memoized objects or arrays<br> - Optimizing performance by memoizing calculations|
+
+#### Summary
+- `useEffect` is for side effects.
+- `useReducer` is for managing complex state logic.
+- `useCallback` is for memoizing functions.
+- `useMemo` is for memoizing values.
+
+---
+
 ### Event Handling
 **Event handling** allows users to interact  with your components, triggering actions and updates in response to events like clicks, form submissions and keyboard input.
 
